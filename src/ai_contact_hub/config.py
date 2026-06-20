@@ -10,7 +10,7 @@ from pydantic_settings import (
 
 ENV = os.getenv("ENV", "local")
 env_file = ".env.loc" if ENV == "local" else ".env"
-print(env_file)
+
 
 class Settings(BaseSettings):
     postgres_host: str
@@ -18,6 +18,7 @@ class Settings(BaseSettings):
     postgres_user: str
     postgres_password: str
     postgres_db: str
+    groq_api_key: str
     
     model_config = SettingsConfigDict(
         env_file=env_file,
