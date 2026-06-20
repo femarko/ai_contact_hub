@@ -10,3 +10,6 @@ psycopg[binary]
 # Settings and validatin
 pydantic
 pydantic-settings
+
+# Async HTTP client for external API requests
+httpx

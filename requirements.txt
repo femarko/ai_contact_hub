@@ -12,8 +12,13 @@ annotated-types==0.7.0
     # via pydantic
 anyio==4.14.0
     # via
+    #   httpx
     #   starlette
     #   watchfiles
+certifi==2026.6.17
+    # via
+    #   httpcore
+    #   httpx
 click==8.4.1
     # via uvicorn
 fastapi==0.137.2
@@ -21,11 +26,19 @@ fastapi==0.137.2
 greenlet==3.5.2
     # via sqlalchemy
 h11==0.16.0
-    # via uvicorn
+    # via
+    #   httpcore
+    #   uvicorn
+httpcore==1.0.9
+    # via httpx
 httptools==0.8.0
     # via uvicorn
+httpx==0.28.1
+    # via -r requirements.in
 idna==3.18
-    # via anyio
+    # via
+    #   anyio
+    #   httpx
 mako==1.3.12
     # via alembic
 markupsafe==3.0.3
