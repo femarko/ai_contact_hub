@@ -1,3 +1,5 @@
+import os
+
 from functools import lru_cache
 from pydantic import PostgresDsn
 from pydantic_settings import (
@@ -6,6 +8,9 @@ from pydantic_settings import (
 )
 
 
+ENV = os.getenv("ENV", "local")
+env_file = ".env.loc" if ENV == "local" else ".env"
+print(env_file)
 
 class Settings(BaseSettings):
     postgres_host: str
@@ -15,7 +20,7 @@ class Settings(BaseSettings):
     postgres_db: str
     
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=env_file,
         extra="ignore"
     )
 
@@ -23,7 +28,7 @@ class Settings(BaseSettings):
     def db_url(self) -> str:
         return str(
             PostgresDsn.build(
-                scheme="postgresql",
+                scheme="postgresql+psycopg",
                 username=self.postgres_user,
                 password=self.postgres_password,
                 host=self.postgres_host,
