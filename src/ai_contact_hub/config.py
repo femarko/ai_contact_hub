@@ -1,7 +1,10 @@
 import os
 
 from functools import lru_cache
-from pydantic import PostgresDsn
+from pydantic import (
+    PostgresDsn,
+    EmailStr,
+)
 from pydantic_settings import (
     BaseSettings,
     SettingsConfigDict
@@ -19,6 +22,11 @@ class Settings(BaseSettings):
     postgres_password: str
     postgres_db: str
     groq_api_key: str
+    smtp_host: str
+    smtp_port: int
+    smtp_user: str
+    smtp_password: str
+    owner_email: EmailStr
     
     model_config = SettingsConfigDict(
         env_file=env_file,
