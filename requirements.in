@@ -10,6 +10,10 @@ psycopg[binary]
 # Settings and validatin
 pydantic
 pydantic-settings
+email-validator
 
 # Async HTTP client for external API requests
 httpx
+
+# Email notifications
+aiosmtplib
