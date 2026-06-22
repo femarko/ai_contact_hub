@@ -8,10 +8,7 @@ from ai_contact_hub.entrypoints.http.dependencies import get_process_new_message
 from ai_contact_hub.shared.responses import ContactResponse
 
 
-contact_router = APIRouter(
-    prefix="/api",
-    tags=["Contact"]
-)
+contact_router = APIRouter(tags=["Contact"])
 
 
 @contact_router.post("/contact", status_code=201)

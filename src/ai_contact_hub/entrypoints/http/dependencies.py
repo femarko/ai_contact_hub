@@ -21,8 +21,6 @@ from ai_contact_hub.infrastructure.emails.smtp_client import SMTP_Client
 
 
 
-def get_contact_repository(session = Depends(session_factory)) -> ContactRepoProto:
-    return ContactRepositoryImpl(session)
 
 def get_ai_client() -> GroqClient:
     return GroqClient(
