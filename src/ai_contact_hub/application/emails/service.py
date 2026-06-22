@@ -1,14 +1,14 @@
-from ai_contact_hub.application.emails.interfaces import (
-    EmailClient,
+from ai_contact_hub.application.interfaces import (
     EmailTemplate
 )
+from ai_contact_hub.application.interfaces import EmailClientProto
 
 
 
 class NotificationService:
     def __init__(
             self,
-            email_client: EmailClient,
+            email_client: EmailClientProto,
             owner_email: str,
             owner_template: EmailTemplate,
             user_template: EmailTemplate
