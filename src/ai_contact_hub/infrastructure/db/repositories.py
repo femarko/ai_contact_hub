@@ -1,5 +1,15 @@
 from ai_contact_hub.domain.entities.contact import Contact
 from sqlalchemy import update
+from sqlalchemy.exc import (
+    IntegrityError,
+    SQLAlchemyError
+)
+
+from ai_contact_hub.domain.errors import (
+    ORMError,
+    ORMIntegrityError
+) 
+
 
 
 class ContactRepositoryImpl:
@@ -16,7 +26,16 @@ class ContactRepositoryImpl:
             message=contact.message
         )
         self.session.add(model)
-        self.session.flush()
+        try:
+            self.session.flush()
+        except IntegrityError as e:
+            raise ORMIntegrityError(
+                "Record already exists"
+            ) from e
+        except SQLAlchemyError as e:
+            raise ORMError(
+                "Failed to save record"
+            ) from e      
         return model.id
 
     def update(self,

@@ -1,6 +1,14 @@
 from typing import Self
+from sqlalchemy.exc import (
+    SQLAlchemyError,
+    IntegrityError
+)
 
 from ai_contact_hub.infrastructure.db.repositories import ContactRepositoryImpl
+from ai_contact_hub.domain.errors import (
+    ORMError,
+    ORMIntegrityError
+)
 
 
 
@@ -21,7 +29,18 @@ class SqlAlchemyUnitOfWork:
             self.session.close()
 
     def commit(self) -> None:
-        self.session.commit()
+        try:
+            self.session.commit()
+        except IntegrityError as e:
+            raise ORMIntegrityError(
+                "Record already exists"
+            ) from e
+        except SQLAlchemyError as e:
+            raise ORMError(
+                "Failed to save record"    
+            ) from e
+        finally:
+            self.rollback()
 
     def rollback(self) -> None:
         self.session.rollback()
