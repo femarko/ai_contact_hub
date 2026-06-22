@@ -1,4 +1,6 @@
 import httpx
+import json
+
 
 
 class GroqClient:
@@ -24,7 +26,6 @@ class GroqClient:
                     Return JSON:
                     {
                       "sentiment": "positive|neutral|negative",
-                      "category": "sales|support|other"
                     }
                     """
                 },
@@ -44,7 +45,7 @@ class GroqClient:
                 json=payload
             )
             response.raise_for_status()
-            data = response.json()
-            return data["choices"][0]["message"]["content"]
-
-
+            content = response.json()
+            result = json.loads(content["choices"][0]["message"]["content"])
+            result |= {"source": "ai"}
+            return result
