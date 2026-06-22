@@ -11,6 +11,8 @@ psycopg[binary]
 pydantic
 pydantic-settings
 email-validator
+pydantic-extra-types
+phonenumbers
 
 # Async HTTP client for external API requests
 httpx
