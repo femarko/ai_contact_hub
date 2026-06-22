@@ -19,3 +19,4 @@ class Contact(Base):
     phone: Mapped[Optional[str]] = mapped_column(String(30))
     message: Mapped[str] = mapped_column(Text)
     sentiment: Mapped[Optional[str]]
+    sentiment_source: Mapped[Optional[str]]
