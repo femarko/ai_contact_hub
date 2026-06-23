@@ -218,3 +218,8 @@ __marimo__/
 
 # local dev stuff
 docker-compose_dev.yml
+
+
+# logging
+logs/
+*.log

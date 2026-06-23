@@ -1,5 +1,6 @@
 import os
 
+from pathlib import Path
 from functools import lru_cache
 from pydantic import (
     PostgresDsn,
@@ -13,6 +14,10 @@ from pydantic_settings import (
 
 ENV = os.getenv("ENV", "local")
 env_file = ".env.loc" if ENV == "local" else ".env"
+
+
+BASE_DIR = Path(__file__).resolve().parents[2]
+LOG_FILE = BASE_DIR / "logs" / "app.log"
 
 
 class Settings(BaseSettings):
