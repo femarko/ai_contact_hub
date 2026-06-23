@@ -2,10 +2,12 @@ from typing import Callable
 
 from ai_contact_hub.domain.entities.contact import Contact
 from ai_contact_hub.application.interfaces import UoWProto
-from ai_contact_hub.shared.dtos import ContactDTO
 from ai_contact_hub.application.emails.service import NotificationService
 from ai_contact_hub.application.ai.service import AIService
-
+from ai_contact_hub.shared.dtos import (
+    ContactDTO,
+    ContactResponse,
+)   
 
 
 class ProcessNewMessage:
@@ -22,7 +24,7 @@ class ProcessNewMessage:
     async def execute(
             self,
             contact_dto: ContactDTO
-        ) -> None:
+    ) -> ContactResponse:
         new_contact = Contact(
             name=contact_dto.name,
             email=contact_dto.email,
@@ -54,3 +56,7 @@ class ProcessNewMessage:
                 sentiment_source=source
             )
             uow.commit()
+        return ContactResponse(
+            id=new_contact_id,
+            status="success"
+        )

@@ -11,3 +11,8 @@ class ContactDTO(BaseModel):
     email: EmailStr
     phone: PhoneNumber
     message: str
+
+
+class ContactResponse(BaseModel):
+    id: int
+    status: str
