@@ -12,7 +12,7 @@ from pydantic_settings import (
 )
 
 
-ENV = os.getenv("ENV", "local")
+ENV = os.getenv("ENV")
 env_file = ".env.loc" if ENV == "local" else ".env"
 
 
