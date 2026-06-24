@@ -145,7 +145,7 @@ activemq-data/
 *.sage.py
 
 # Environments
-# .env
+.env
 .envrc
 .venv
 .venv_ai_contact_hub/
@@ -217,4 +217,9 @@ __marimo__/
 .streamlit/secrets.toml
 
 # local dev stuff
-docker-compose_loc.yml
+docker-compose_dev.yml
+
+
+# logging
+logs/
+*.log

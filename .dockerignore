@@ -1,0 +1,17 @@
+.git
+.gitignore
+
+__pycache__
+*.pyc
+
+.env
+.env.loc
+
+.venv
+venv
+.venv_ai_contact_hub
+
+.idea
+.vscode
+
+logs/*
