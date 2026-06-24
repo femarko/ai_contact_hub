@@ -9,28 +9,28 @@ class NotificationService:
     def __init__(
             self,
             email_client: EmailClientProto,
-            owner_email: str,
+            owner_email_address: str,
             owner_template: EmailTemplate,
             user_template: EmailTemplate
     ) -> None:
         self.email_client = email_client
-        self.owner_email = owner_email
+        self.owner_email_address = owner_email_address
         self.owner_template = owner_template
         self.user_template = user_template
         
     async def notify_owner(
         self,
         user_name: str,
-        user_email: str,
+        user_email_address: str,
         user_message: str
     ) -> None:
         await self.email_client.send(
-            to=self.owner_email,
+            to=self.owner_email_address,
             subject=self.owner_template.subject,
             body=self.owner_template.text_builder(
                 name=user_name,
-                email=user_email,
-                message=user_message
+                email=user_email_address,
+                message=user_message,
             )
         )
 

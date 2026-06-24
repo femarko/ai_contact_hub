@@ -31,7 +31,7 @@ class Settings(BaseSettings):
     smtp_port: int
     smtp_user: str
     smtp_password: str
-    owner_email: EmailStr
+    owner_email_address: EmailStr
     
     model_config = SettingsConfigDict(
         env_file=env_file,

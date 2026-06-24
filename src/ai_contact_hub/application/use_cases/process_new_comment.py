@@ -25,12 +25,14 @@ class ProcessNewMessage:
             self,
             contact_dto: ContactDTO
     ) -> ContactResponse:
+
         new_contact = Contact(
             name=contact_dto.name,
             email=contact_dto.email,
             phone=contact_dto.phone,
             message=contact_dto.message
         )
+
         with self.uow() as uow:
             new_contact_id = uow.contacts.save(new_contact)
             uow.commit()
@@ -40,9 +42,10 @@ class ProcessNewMessage:
             user_email=contact_dto.email,
             user_message=contact_dto.message
         )
+        
         await self.email_client.notify_owner(
             user_name=contact_dto.name,
-            user_email=contact_dto.email,
+            user_email_address=contact_dto.email,
             user_message=contact_dto.message
         )
 

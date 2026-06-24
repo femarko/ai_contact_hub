@@ -42,7 +42,7 @@ def get_ai_service(
 def get_email_client() -> NotificationService:
     return NotificationService(
         email_client=SMTP_Client,
-        owner_email=get_settings().owner_email,
+        owner_email_address=get_settings().owner_email_address,
         owner_template=EmailTemplate(
             subject=EmailSubject.OWNER,
             text_builder=owner_notification
