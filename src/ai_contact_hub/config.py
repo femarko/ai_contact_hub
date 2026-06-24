@@ -16,7 +16,7 @@ ENV = os.getenv("ENV")
 env_file = ".env.loc" if ENV == "local" else ".env"
 
 
-BASE_DIR = Path(__file__).resolve().parents[2]
+BASE_DIR = Path.cwd()
 LOG_FILE = BASE_DIR / "logs" / "app.log"
 
 
