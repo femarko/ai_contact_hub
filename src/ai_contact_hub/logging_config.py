@@ -20,7 +20,7 @@ def setup_logging():
 
     handler.setFormatter(formatter)
 
-    for logger_name in ["requests", "ai"]:
+    for logger_name in ["requests", "ai", "emails"]:
         logger = logging.getLogger(logger_name)
         if logger.handlers:
             continue

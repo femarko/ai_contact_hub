@@ -1,8 +1,13 @@
+import logging
 import aiosmtplib
 from email.message import EmailMessage
-from ai_contact_hub.config import get_settings
 
+from ai_contact_hub.config import get_settings
 from ai_contact_hub.domain.errors import EmailError
+
+
+
+logger = logging.getLogger("emails")
 
 
 class SMTP_Client:
@@ -26,5 +31,6 @@ class SMTP_Client:
                 password=get_settings().smtp_password,
                 start_tls=True,
             )
-        except aiosmtplib.SMTPException as e:
-            raise EmailError(f"Failed to send email") from e
+        except aiosmtplib.SMTPException as exc:
+            context = "Failed to send email to user"
+            logger.exception("%s", context)

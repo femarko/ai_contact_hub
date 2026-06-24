@@ -1,7 +1,8 @@
 def owner_notification(
     name: str,
     email: str,
-    message: str
+    message: str,
+    context: str | None = None
 ) -> str:
     return f"""
 Новое обращение
@@ -14,6 +15,9 @@ Email:
 
 Сообщение:
 {message}
+
+Примечания:
+{context if context is not None else ""}
 """
 
 

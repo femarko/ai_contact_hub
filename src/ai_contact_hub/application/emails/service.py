@@ -17,6 +17,7 @@ class NotificationService:
         self.owner_email_address = owner_email_address
         self.owner_template = owner_template
         self.user_template = user_template
+        self.context: str | None = None
         
     async def notify_owner(
         self,
@@ -31,6 +32,7 @@ class NotificationService:
                 name=user_name,
                 email=user_email_address,
                 message=user_message,
+                context=self.context
             )
         )
 

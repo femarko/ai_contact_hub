@@ -34,12 +34,3 @@ def register_exception_handlers(app):
             str(exc),
         )
         raise HTTPException(status_code=409, detail=str(exc))
-
-    @app.exception_handler(EmailError)
-    async def employee_reassignment_error_exception_handler(request: Request, exc: EmailError):
-        logger.exception(
-            "EmailError on %s %s",
-            request.method,
-            request.url.path,
-        )
-        raise HTTPException(status_code=500, detail=str(exc))
